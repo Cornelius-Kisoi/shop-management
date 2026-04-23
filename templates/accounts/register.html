@@ -1,0 +1,318 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create Account - EXTREME TECH">
+    <meta name="theme-color" content="#4361ee">
+    <!-- Apple iOS App Support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EXTREME TECH">
+    <!-- Icons & Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'Extreme Tech Log.png' %}">
+    <link rel="shortcut icon" href="{% static 'Extreme Tech Log.png' %}">
+    <!-- iOS App Icons -->
+    <link rel="apple-touch-icon" href="{% static 'ios/180.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'ios/152.png' %}">
+    <link rel="apple-touch-icon" sizes="167x167" href="{% static 'ios/167.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'ios/180.png' %}">
+    <!-- Android App Icons -->
+    <link rel="icon" type="image/png" sizes="48x48" href="{% static 'android/launchericon-48x48.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'android/launchericon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android/launchericon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android/launchericon-512x512.png' %}">
+    <!-- Windows App Icon -->
+    <meta name="msapplication-TileImage" content="{% static 'windows/Square150x150Logo.scale-100.png' %}">
+    <meta name="msapplication-TileColor" content="#4361ee">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <title>Register - EXTREME TECH</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        .register-container {
+            max-width: 450px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .register-card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .register-card .card-header {
+            background: linear-gradient(135deg, #4361ee 0%, #3f37c9 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: none;
+        }
+
+        .register-card .card-header h4 {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .register-card .card-body {
+            padding: 40px 30px;
+            background: #ffffff;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-control {
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: #ffffff;
+            color: #212529;
+        }
+
+        .form-control:focus {
+            border-color: #4361ee;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+            background: #ffffff;
+            color: #212529;
+        }
+
+        .form-control::placeholder {
+            color: #9ca3af;
+        }
+
+        .input-group-text {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            color: #9ca3af;
+            border-right: none;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .input-group .form-control {
+            border-left: none;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #4361ee 0%, #3f37c9 100%);
+            border: none;
+            padding: 12px 20px;
+            font-weight: 600;
+            border-radius: 10px;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
+            color: white;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-link p {
+            font-size: 13px;
+            color: #6b7280;
+            margin: 0 0 8px;
+        }
+
+        .login-link a {
+            color: #4361ee;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .login-link a:hover {
+            color: #3f37c9;
+            transform: translateX(2px);
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .error-message {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        }
+
+        body.dark-mode .register-card .card-body {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .form-label {
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .form-control {
+            background: #334155;
+            border-color: #475569;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .form-control:focus {
+            background: #334155;
+            border-color: #3b82f6;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .form-control::placeholder {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .input-group-text {
+            background: #475569;
+            border-color: #475569;
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .login-link p {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .login-link a {
+            color: #3b82f6;
+        }
+
+        body.dark-mode .login-link a:hover {
+            color: #2563eb;
+        }
+
+        body.dark-mode .error-message {
+            background: #7f1d1d;
+            border-color: #dc2626;
+            color: #fca5a5;
+        }
+
+        body.dark-mode .footer-text {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="card register-card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4><i class="fas fa-user-plus me-2"></i> EXTREME TECH</h4>
+                    <button type="button" class="btn btn-link text-white" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">First Name</label>
+                            <input type="text" name="first_name" class="form-control" placeholder="Enter your first name">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" name="last_name" class="form-control" placeholder="Enter your last name">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" placeholder="Choose a username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Create a password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" name="confirm_password" class="form-control" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-register w-100">
+                        <i class="fas fa-user-plus me-2"></i>Register
+                    </button>
+                </form>
+                
+                <div class="login-link">
+                    <p>Already have an account?</p>
+                    <a href="{% url 'login' %}">Sign In</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-text">
+            <p>&copy; 2026 EXTREME TECH | Stock Management System</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const body = document.body;
+            const isDark = body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+
+        // Load Dark Mode Preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>

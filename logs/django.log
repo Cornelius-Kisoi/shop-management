@@ -1,0 +1,395 @@
+ERROR 2026-04-18 18:16:08,949 log 3052 17116 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:16:08,954 log 3052 12120 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:16:21,379 log 3052 18492 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:16:21,381 log 3052 5512 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:21:04,814 log 3052 18396 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:21:04,818 log 3052 17116 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:21:04,892 log 3052 11904 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:21:04,895 log 3052 9024 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:21:05,106 log 3052 5980 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:21:05,109 log 3052 12752 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:21:15,305 log 3052 19376 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:21:15,309 log 3052 16720 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:21:24,280 log 3052 10740 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:21:24,284 log 3052 17508 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:24:40,082 log 3052 1672 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:24:40,085 log 3052 11572 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:24:51,220 log 3052 2180 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:24:51,223 log 3052 19572 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:24:58,494 log 3052 20468 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:24:58,496 log 3052 4628 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:25:05,590 log 3052 15060 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:25:05,593 log 3052 18308 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:25:59,469 log 18776 12752 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:25:59,472 log 18776 19508 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:26:09,622 log 18776 14664 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:26:09,625 log 18776 20184 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:26:20,780 log 18776 13212 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:26:20,782 log 18776 20056 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:30:12,154 log 18776 14660 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:30:12,162 log 18776 10164 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:31:41,985 log 18776 1148 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:31:41,989 log 18776 9552 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:31:45,903 log 18776 1092 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:31:45,905 log 18776 11792 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:33:07,644 log 18776 11604 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:33:07,648 log 18776 13116 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:33:16,434 log 18776 18232 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:33:16,436 log 18776 19856 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:33:19,905 log 18776 18524 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:33:19,908 log 18776 15936 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:33:25,379 log 18776 16444 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:33:25,381 log 18776 12976 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:33:30,424 log 18776 16556 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:33:30,428 log 18776 19240 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:35:44,755 basehttp 13124 19300 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:35:44,770 basehttp 13124 14668 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:35:49,680 basehttp 13124 5608 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:35:49,684 basehttp 13124 16116 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:42:16,803 basehttp 9008 20136 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:42:16,830 basehttp 9008 19416 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:42:22,122 basehttp 9008 17564 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-18 18:42:22,131 basehttp 9008 13220 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-19 20:52:51,679 log 19408 8700 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-19 20:52:51,685 log 19408 15088 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-21 17:39:21,377 log 17248 9580 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-21 17:39:21,386 log 17248 18164 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-04-21 17:46:00,837 log 17248 19984 Internal Server Error: /products/stock-history/
+Traceback (most recent call last):
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\db\models\fields\__init__.py", line 2128, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: 'None'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\CKay\Desktop\Final Projects\django project\products\views_django.py", line 267, in stock_history
+    history = history.filter(product_id=product_id)
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\db\models\query.py", line 1542, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\db\models\query.py", line 1560, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\db\models\query.py", line 1570, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\db\models\sql\query.py", line 1676, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\db\models\sql\query.py", line 1708, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\db\models\sql\query.py", line 1618, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\db\models\sql\query.py", line 1445, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\db\models\lookups.py", line 35, in __init__
+    self.rhs = self.get_prep_lookup()
+               ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 113, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CKay\Desktop\Final Projects\django project\venv\Lib\site-packages\django\db\models\fields\__init__.py", line 2130, in get_prep_value
+    raise e.__class__(
+        "Field '%s' expected a number but got %r." % (self.name, value),
+    ) from e
+ValueError: Field 'id' expected a number but got 'None'.
+ERROR 2026-04-21 17:46:00,852 log 17248 19984 "GET /products/stock-history/?page=2&product=None&action=None&date_from=None&date_to=None HTTP/1.1" 500 140491
+ERROR 2026-04-22 18:03:46,618 log 19592 12148 Invalid HTTP_HOST header: 'tulip-camisole-wobble.ngrok-free.dev'. You may need to add 'tulip-camisole-wobble.ngrok-free.dev' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\utils\deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\http\request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'tulip-camisole-wobble.ngrok-free.dev'. You may need to add 'tulip-camisole-wobble.ngrok-free.dev' to ALLOWED_HOSTS.
+ERROR 2026-04-22 18:04:41,699 log 19592 16332 Invalid HTTP_HOST header: 'tulip-camisole-wobble.ngrok-free.dev'. You may need to add 'tulip-camisole-wobble.ngrok-free.dev' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\utils\deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\http\request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'tulip-camisole-wobble.ngrok-free.dev'. You may need to add 'tulip-camisole-wobble.ngrok-free.dev' to ALLOWED_HOSTS.
+ERROR 2026-04-22 18:04:43,417 log 19592 22404 Invalid HTTP_HOST header: 'tulip-camisole-wobble.ngrok-free.dev'. You may need to add 'tulip-camisole-wobble.ngrok-free.dev' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\utils\deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\http\request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'tulip-camisole-wobble.ngrok-free.dev'. You may need to add 'tulip-camisole-wobble.ngrok-free.dev' to ALLOWED_HOSTS.
+ERROR 2026-04-22 20:18:40,104 log 8528 18484 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\cache.py", line 29, in _decorator
+    return method(self, *args, **kwargs)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\cache.py", line 138, in has_key
+    return self.client.has_key(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\client\default.py", line 740, in has_key
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 11001 connecting to redis:6379. getaddrinfo failed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\CKay\Desktop\Final Projects\django project\users\views_django.py", line 104, in login_view
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\auth\__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\cache.py", line 55, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\cache.py", line 117, in exists
+    bool(session_key) and (self.cache_key_prefix + session_key) in self._cache
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\cache\backends\base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\cache.py", line 36, in _decorator
+    raise e.__cause__  # noqa: B904
+    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\client\default.py", line 738, in has_key
+    return client.exists(key) == 1
+           ~~~~~~~~~~~~~^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\commands\core.py", line 1916, in exists
+    return self.execute_command("EXISTS", *names, keys=names)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\client.py", line 716, in execute_command
+    return self._execute_command(*args, **options)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\client.py", line 722, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\utils.py", line 236, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 3041, in get_connection
+    connection.connect()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 976, in connect
+    self.retry.call_with_retry(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.connect_check_health(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        lambda error: self.disconnect(error),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\retry.py", line 132, in call_with_retry
+    raise error
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\retry.py", line 120, in call_with_retry
+    return do()
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 977, in <lambda>
+    lambda: self.connect_check_health(
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        check_health=True, retry_socket_connect=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ),
+    ^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 1025, in connect_check_health
+    raise e
+redis.exceptions.ConnectionError: Error 11001 connecting to redis:6379. getaddrinfo failed.
+ERROR 2026-04-22 20:18:40,450 log 8528 16540 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\cache.py", line 29, in _decorator
+    return method(self, *args, **kwargs)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\cache.py", line 138, in has_key
+    return self.client.has_key(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\client\default.py", line 740, in has_key
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 11001 connecting to redis:6379. getaddrinfo failed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\CKay\Desktop\Final Projects\django project\users\views_django.py", line 104, in login_view
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\auth\__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\cache.py", line 55, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\cache.py", line 117, in exists
+    bool(session_key) and (self.cache_key_prefix + session_key) in self._cache
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\cache\backends\base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\cache.py", line 36, in _decorator
+    raise e.__cause__  # noqa: B904
+    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\client\default.py", line 738, in has_key
+    return client.exists(key) == 1
+           ~~~~~~~~~~~~~^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\commands\core.py", line 1916, in exists
+    return self.execute_command("EXISTS", *names, keys=names)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\client.py", line 716, in execute_command
+    return self._execute_command(*args, **options)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\client.py", line 722, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\utils.py", line 236, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 3041, in get_connection
+    connection.connect()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 976, in connect
+    self.retry.call_with_retry(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.connect_check_health(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        lambda error: self.disconnect(error),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\retry.py", line 132, in call_with_retry
+    raise error
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\retry.py", line 120, in call_with_retry
+    return do()
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 977, in <lambda>
+    lambda: self.connect_check_health(
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        check_health=True, retry_socket_connect=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ),
+    ^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 1025, in connect_check_health
+    raise e
+redis.exceptions.ConnectionError: Error 11001 connecting to redis:6379. getaddrinfo failed.
+ERROR 2026-04-22 20:18:40,469 basehttp 8528 16540 "POST /accounts/login/ HTTP/1.1" 500 161730
+ERROR 2026-04-22 20:19:50,321 log 8528 12908 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\cache.py", line 29, in _decorator
+    return method(self, *args, **kwargs)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\cache.py", line 138, in has_key
+    return self.client.has_key(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\client\default.py", line 740, in has_key
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 11001 connecting to redis:6379. getaddrinfo failed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\CKay\Desktop\Final Projects\django project\users\views_django.py", line 104, in login_view
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\auth\__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\cache.py", line 55, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\contrib\sessions\backends\cache.py", line 117, in exists
+    bool(session_key) and (self.cache_key_prefix + session_key) in self._cache
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django\core\cache\backends\base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\cache.py", line 36, in _decorator
+    raise e.__cause__  # noqa: B904
+    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\django_redis\client\default.py", line 738, in has_key
+    return client.exists(key) == 1
+           ~~~~~~~~~~~~~^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\commands\core.py", line 1916, in exists
+    return self.execute_command("EXISTS", *names, keys=names)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\client.py", line 716, in execute_command
+    return self._execute_command(*args, **options)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\client.py", line 722, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\utils.py", line 236, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 3041, in get_connection
+    connection.connect()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 976, in connect
+    self.retry.call_with_retry(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.connect_check_health(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        lambda error: self.disconnect(error),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\retry.py", line 132, in call_with_retry
+    raise error
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\retry.py", line 120, in call_with_retry
+    return do()
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 977, in <lambda>
+    lambda: self.connect_check_health(
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        check_health=True, retry_socket_connect=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ),
+    ^
+  File "C:\Users\CKay\AppData\Local\Programs\Python\Python314\Lib\site-packages\redis\connection.py", line 1025, in connect_check_health
+    raise e
+redis.exceptions.ConnectionError: Error 11001 connecting to redis:6379. getaddrinfo failed.
+ERROR 2026-04-22 20:19:50,326 basehttp 8528 12908 "POST /accounts/login/ HTTP/1.1" 500 160836

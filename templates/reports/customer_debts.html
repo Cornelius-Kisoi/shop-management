@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load currency_extra %}
+
+{% block title %}Customer Debts - EXTREME TECH{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2><i class="fas fa-users text-primary"></i> Customer Debts</h2>
+        <p class="text-muted small mb-0">Review customers with outstanding credit and collect payments.</p>
+    </div>
+    <a href="{% url 'reports:expense_list' %}" class="btn btn-secondary">
+        <i class="fas fa-hand-holding-usd"></i> Credit Ledger
+    </a>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <h6 class="mb-0">Customers Owing Money</h6>
+            </div>
+            <div class="card-body p-0">
+                <table class="table mb-0 table-hover">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th class="text-end">Owed</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for customer in customers %}
+                        <tr {% if selected_customer and selected_customer.id == customer.id %}class="table-active"{% endif %}>
+                            <td>{{ customer.name }}</td>
+                            <td class="text-end fw-bold text-danger">{{ customer.total_owed|default:0|kes }}</td>
+                            <td class="text-end">
+                                <a href="?customer_id={{ customer.id }}" class="btn btn-sm btn-outline-primary">View</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="3" class="text-center text-muted py-4">No customers with outstanding balances.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        {% if selected_customer %}
+        <div class="card mb-4">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1">{{ selected_customer.name }}</h6>
+                    <small class="text-muted">{{ selected_customer.email }} | {{ selected_customer.phone }}</small>
+                </div>
+                <div class="text-end">
+                    <div class="small text-muted">Total Outstanding</div>
+                    <div class="fw-bold text-danger">{{ selected_total|kes }}</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="mb-2"><strong>Address:</strong> {{ selected_customer.address|default:'N/A' }}</p>
+                <p class="mb-0"><strong>Credit Limit:</strong> {{ selected_customer.credit_limit|kes }}</p>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <form id="debtForm" method="post" action="{% url 'reports:debts_receipt' %}">
+                {% csrf_token %}
+                <input type="hidden" name="action" id="debtActionInput" value="">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">Pending Credits</h6>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="submitDebtAction('print')">Print Selected</button>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="submitDebtAction('download')">Download Selected</button>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table mb-0 table-hover">
+                        <thead>
+                            <tr>
+                                <th class="w-1"><input type="checkbox" id="selectAllCredits" onclick="toggleAllCredits(this)"></th>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th class="text-end">Balance</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for credit in pending_credits %}
+                            <tr>
+                                <td><input type="checkbox" name="selected_credits" value="{{ credit.id }}" class="creditCheckbox"></td>
+                                <td>{{ credit.date|date:'M d, Y' }}</td>
+                                <td>{{ credit.description|truncatechars:40 }}</td>
+                                <td class="text-end text-danger">{{ credit.outstanding_balance|kes }}</td>
+                                <td class="text-end">
+                                    <a href="{% url 'reports:credit_receipt' credit.id %}" class="btn btn-sm btn-outline-secondary">Receipt</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="5" class="text-center text-muted py-4">No pending credits found for this customer.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                    <div class="small text-muted">Use the buttons above to print or download a combined receipt for selected debts.</div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="submitDebtAction('print')">Print Selected</button>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="submitDebtAction('download')">Download Selected</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-light">
+                <h6 class="mb-0">Record Payment</h6>
+            </div>
+            <div class="card-body">
+                <form method="post" action="{% url 'reports:record_payment' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="customer_id" value="{{ selected_customer.id }}">
+                    <div class="mb-3">
+                        <label class="form-label">Payment Amount</label>
+                        <div class="input-group">
+                            <span class="input-group-text">KSh</span>
+                            <input type="number" step="0.01" min="0" name="payment_amount" class="form-control" placeholder="Enter amount" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Payment Date</label>
+                        <input type="text" class="form-control" value="{% now "M d, Y" %}" disabled>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Apply Payment</button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div class="card">
+            <div class="card-body text-center py-5">
+                <h5 class="mb-3">Select a customer to review debts and collect payment.</h5>
+                <p class="text-muted mb-0">Click a customer from the left-hand list to open the payment workflow.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    function toggleAllCredits(source) {
+        const checkboxes = document.querySelectorAll('.creditCheckbox');
+        checkboxes.forEach(cb => cb.checked = source.checked);
+    }
+
+    function submitDebtAction(action) {
+        const form = document.getElementById('debtForm');
+        const actionInput = document.getElementById('debtActionInput');
+        if (!form || !actionInput) {
+            return;
+        }
+        actionInput.value = action;
+        form.submit();
+    }
+</script>
+{% endblock %}
+{% endblock %}

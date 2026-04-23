@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% if product %}Edit{% else %}Add{% endif %} Product - EXTREME TECH{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col-12">
+        <h2><i class="fas fa-box"></i> {% if product %}Edit{% else %}Add{% endif %} Product</h2>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body">
+        {% crispy form %}
+    </div>
+</div>
+{% endblock %}

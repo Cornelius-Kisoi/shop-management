@@ -1,0 +1,136 @@
+﻿{% load currency_extra %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Debt Receipt - {{ customer.name }}</title>
+    <style>
+        @page { size: A4 portrait; margin: 10mm; }
+        body { margin: 0; padding: 12px; background: #fff; color: #0f172a; font-family: 'Courier New', Courier, monospace; font-size: 10px; line-height: 1.2; }
+        .receipt { max-width: 480px; margin: 0 auto; padding: 14px; background: #fff; border: 1px solid #3b82f6; box-shadow: none; }
+        .actions { text-align: right; margin-bottom: 10px; }
+        .actions a { font-size: 10px; color: #1d4ed8; text-decoration: none; }
+        .header-box { text-align: center; padding: 10px 12px; margin-bottom: 10px; border: 1px solid #3b82f6; background: #eff6ff; }
+        .header { margin: 0; }
+        .header h1 { margin: 0 0 4px; font-size: 20px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 900; color: #1e3a8a; }
+        .header .subtitle { margin: 2px 0; font-size: 9px; font-weight: 900; color: #1d4ed8; }
+        .header .address { margin: 2px 0 0; font-size: 8.5px; line-height: 1.3; font-weight: 700; color: #2563eb; }
+        .info-table { width: 100%; margin-bottom: 12px; border-collapse: collapse; font-size: 10.5px; line-height: 1.18; }
+        .info-table td { padding: 2px 0; vertical-align: top; }
+        .info-table .label { width: 120px; font-weight: 900; color: #1d4ed8; }
+        .info-table .right { text-align: right; color: #1e40af; }
+        .items-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; font-size: 10.5px; line-height: 1.15; }
+        .items-table th, .items-table td { padding: 6px 5px; border-bottom: 1px solid #93c5fd; }
+        .items-table th { font-weight: 900; text-transform: uppercase; font-size: 10px; color: #1e40af; }
+        .items-table td { vertical-align: top; color: #0f172a; }
+        .items-table .right { text-align: right; }
+        .totals-table { width: 100%; border-collapse: collapse; margin-bottom: 6px; font-size: 10.5px; line-height: 1.15; }
+        .totals-table td { padding: 6px 5px; }
+        .totals-table tr { border-top: 1px solid #93c5fd; }
+        .totals-table tr:first-child td { border-top: none; }
+        .totals-table .label { font-weight: 900; color: #1d4ed8; }
+        .totals-table .value { text-align: right; color: #0f172a; }
+        .totals-table tr.grand-total td { font-size: 13px; font-weight: 900; padding-top: 8px; border-top: 1px solid #3b82f6; color: #1e3a8a; }
+        .footer-note { text-align: center; font-size: 9px; margin-top: 8px; line-height: 1.2; color: #1e40af; }
+
+        /* Dark Mode Styles */
+        @media screen {
+            body.dark-mode { background: #0f172a; color: #e2e8f0; }
+            body.dark-mode .receipt { background: #1e293b; border-color: #3b82f6; }
+            body.dark-mode .actions a { color: #60a5fa; }
+            body.dark-mode .header-box { background: #1e293b; border-color: #3b82f6; }
+            body.dark-mode .header h1 { color: #60a5fa; }
+            body.dark-mode .header .subtitle { color: #93c5fd; }
+            body.dark-mode .info-table .label { color: #60a5fa; }
+            body.dark-mode .info-table .right { color: #93c5fd; }
+            body.dark-mode .items-table th { border-bottom-color: #3b82f6; color: #93c5fd; }
+            body.dark-mode .items-table td { border-bottom-color: #475569; color: #e2e8f0; }
+            body.dark-mode .totals-table tr { border-top-color: #475569; }
+            body.dark-mode .totals-table .label { color: #60a5fa; }
+            body.dark-mode .totals-table .value { color: #e2e8f0; }
+            body.dark-mode .totals-table tr.grand-total td { border-top-color: #3b82f6; color: #60a5fa; }
+            body.dark-mode .footer-note { color: #93c5fd; }
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <div class="header-box">
+            <div class="header">
+                <h1>EXTREME TECH AUTO PARTS AND SPARES</h1>
+                <div class="subtitle">
+                    Specialists in:- Toyota, Nissan, Subaru, Benz, VW, BMW,<br>
+                    Peugeot, Land Rover<br>
+                    Enterprise Road, Topyard. Opp. equity Industrial Area<br>
+                    Tel: 0725 009 947 / 0723 276 482
+                </div>
+            </div>
+        </div>
+
+        <table class="info-table">
+            <tr>
+                <td class="label">M/S:</td>
+                <td>{{ customer.name }}</td>
+                <td class="right"><strong>Date/Time:</strong> {% if credits %}{{ credits.0.created_at|date:'d/m/Y H:i' }}{% else %}N/A{% endif %}</td>
+            </tr>
+            <tr>
+                <td class="label">Invoice</td>
+                <td>Debt Receipt</td>
+                <td class="right"><strong>Payment:</strong> Credit</td>
+            </tr>
+        </table>
+
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Date/Time</th>
+                    <th>Particulars</th>
+                    <th class="right">Qty</th>
+                    <th class="right">@</th>
+                    <th class="right">Shs.</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for credit in credits %}
+                    {% if credit.sale and credit.sale.items.exists %}
+                        {% for item in credit.sale.items.all %}
+                        <tr>
+                            <td>{{ credit.date|date:'d/m/Y' }} {{ credit.created_at|date:'H:i' }}</td>
+                            <td>{{ item.product.name }}</td>
+                            <td class="right">{{ item.quantity }}</td>
+                            <td class="right">{{ item.unit_price|kes }}</td>
+                            <td class="right">{{ item.total_price|kes }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td>{{ credit.date|date:'d/m/Y' }} {{ credit.created_at|date:'H:i' }}</td>
+                            <td>{{ credit.description|default:'Credit entry' }}</td>
+                            <td class="right">1</td>
+                            <td class="right">{{ credit.amount|kes }}</td>
+                            <td class="right">{{ credit.amount|kes }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <table class="totals-table">
+            <tr>
+                <td class="label">Total</td>
+                <td class="value">{{ total_amount|kes }}</td>
+            </tr>
+            <tr>
+                <td class="label">Amount Paid</td>
+                <td class="value">{{ total_paid|kes }}</td>
+            </tr>
+            <tr class="grand-total">
+                <td class="label">Total Outstanding</td>
+                <td class="value">{{ total_outstanding|kes }}</td>
+            </tr>
+        </table>
+
+        <div class="footer-note">Goods once sold will not be re-accepted. Please keep this receipt for your records.</div>
+    </div>
+</body>
+</html>

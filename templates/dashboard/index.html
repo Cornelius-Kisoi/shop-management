@@ -1,0 +1,314 @@
+{% extends 'base.html' %}
+{% load currency_extra %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+        <p class="text-muted">Welcome back, {{ user.username }}!</p>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 small">Today's Sales</p>
+                        <h4 class="mb-0 text-primary">{{ total_sales_today }}</h4>
+                    </div>
+                    <div class="icon text-primary"><i class="fas fa-shopping-cart fa-2x"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 small">Total Sales</p>
+                        <h4 class="mb-0 text-primary">{{ total_sales_count|default:0 }}</h4>
+                    </div>
+                    <div class="icon text-primary"><i class="fas fareceipt fa-2x"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 small">Today's Revenue</p>
+                        <h4 class="mb-0 text-success">{{ revenue_today|kes }}</h4>
+                    </div>
+                    <div class="icon text-success"><i class="fas fa-money-bill-wave fa-2x"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 small">Total Stock</p>
+                        <h4 class="mb-0 text-info" id="total-stock">{{ total_stock }}</h4>
+                    </div>
+                    <div class="icon text-info"><i class="fas fa-boxes fa-2x"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 small">Total Expenses</p>
+                        <h4 class="mb-0 text-secondary">{{ total_expenses|kes }}</h4>
+                    </div>
+                    <div class="icon text-secondary"><i class="fas fa-coins fa-2x"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 small">Outstanding Debts</p>
+                        <h4 class="mb-0 text-danger">{{ outstanding_balance|kes }}</h4>
+                    </div>
+                    <div class="icon text-danger"><i class="fas fa-credit-card fa-2x"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 small">Low Stock Items</p>
+                        <h4 class="mb-0 text-warning" id="low-stock-count">{{ low_stock_count }}</h4>
+                    </div>
+                    <div class="icon text-warning"><i class="fas fa-exclamation-triangle fa-2x"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 small">Total Products</p>
+                        <h4 class="mb-0 text-info" id="total-products-count">{{ total_products }}</h4>
+                    </div>
+                    <div class="icon text-info"><i class="fas fa-box fa-2x"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-0">
+                <h5 class="mb-0"><i class="fas fa-chart-bar text-primary me-2"></i> Weekly Revenue</h5>
+            </div>
+            <div class="card-body text-center">
+                <h3 class="text-success mb-1">{{ revenue_week|kes }}</h3>
+                <p class="text-muted small mb-0">Last 7 days</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-0">
+                <h5 class="mb-0"><i class="fas fa-chart-line text-primary me-2"></i> Weekly Sales Trend</h5>
+            </div>
+            <div class="card-body">
+                <div id="sales-chart"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-0">
+                <h5 class="mb-0"><i class="fas fa-chart-bar text-primary me-2"></i> Weekly Revenue</h5>
+            </div>
+            <div class="card-body text-center">
+                <h3 class="text-success mb-1">{{ revenue_week|kes }}</h3>
+                <p class="text-muted small mb-0">Last 7 days</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-0">
+                <h5 class="mb-0"><i class="fas fa-star text-warning me-2"></i> Top Selling Products</h5>
+            </div>
+            <div class="card-body">
+                {% if top_products %}
+                <div class="table-responsive">
+                    <table class="table table-hover table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Qty</th>
+                                <th>Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in top_products %}
+                            <tr>
+                                <td>{{ p.product__name }}</td>
+                                <td><span class="badge bg-primary">{{ p.total_sold }}</span></td>
+                                <td>{{ p.total_revenue|kes }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center py-3 mb-0">No sales yet</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-0">
+                <h5 class="mb-0"><i class="fas fa-shopping-cart text-primary me-2"></i> Recent Sales</h5>
+            </div>
+            <div class="card-body">
+                {% if recent_sales %}
+                <div class="table-responsive">
+                    <table class="table table-hover table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th>Invoice</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in recent_sales %}
+                            <tr>
+                                <td><span class="badge bg-light text-dark">{{ s.invoice_number }}</span></td>
+                                <td class="text-success">{{ s.total_amount|kes }}</td>
+                                <td class="text-muted">{{ s.created_at|date:"M d, H:i" }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center py-3 mb-0">No recent sales</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-0">
+                <h5 class="mb-0"><i class="fas fa-boxes text-info me-2"></i> Stock Available Per Product</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>SKU</th>
+                                <th>Category</th>
+                                <th>Stock Qty</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in stock_per_product %}
+                            <tr>
+                                <td>{{ product.name }}</td>
+                                <td><span class="badge bg-light text-dark">{{ product.sku }}</span></td>
+                                <td>{{ product.category.name|default:"-" }}</td>
+                                <td class="{% if product.stock_quantity <= product.low_stock_threshold %}text-danger{% else %}text-success{% endif %}">
+                                    {{ product.stock_quantity }}
+                                </td>
+                                <td>
+                                    {% if product.stock_quantity <= product.low_stock_threshold %}
+                                    <span class="badge bg-danger">Low Stock</span>
+                                    {% else %}
+                                    <span class="badge bg-success">In Stock</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="5" class="text-center text-muted">No products found</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const salesData = {{ sales_data|safe }};
+    
+    const labels = salesData.map(d => d.label);
+    const amounts = salesData.map(d => d.amount);
+    
+    const trace = {
+        x: labels,
+        y: amounts,
+        type: 'bar',
+        marker: {
+            color: amounts,
+            colorscale: [[0, '#159895'], [1, '#57c5b6']]
+        },
+        hovertemplate: 'KSh %{y:,.2f}<extra></extra>'
+    };
+    
+    const layout = {
+        paper_bgcolor: 'transparent',
+        plot_bgcolor: 'transparent',
+        xaxis: {
+            gridcolor: '#eee',
+            zeroline: false
+        },
+        yaxis: {
+            gridcolor: '#eee',
+            zeroline: false,
+            tickformat: 'KSh ,.0f'
+        },
+        margin: { t: 20, b: 40, l: 60, r: 20 }
+    };
+    
+    Plotly.newPlot('sales-chart', [trace], layout, {displayModeBar: false});
+    
+    setInterval(function() {
+        htmx.ajax('GET', '/api/dashboard/stats/', {target: '#low-stock-count'}).then(function() {
+            // Stats updated via HTMX
+        });
+    }, 30000);
+});
+</script>
+{% endblock %}

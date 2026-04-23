@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block title %}Bulk Product Upload - EXTREME TECH{% endblock %}
+
+{% block extra_css %}
+<style>
+.upload-progress-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+}
+.upload-progress-overlay.active {
+    display: flex;
+}
+.upload-progress-card {
+    max-width: 420px;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+.upload-progress-card .card-body {
+    text-align: center;
+    padding: 32px;
+}
+.upload-progress-card .spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Dark Mode Styles */
+body.dark-mode .upload-progress-overlay {
+    background: rgba(15, 23, 42, 0.8);
+}
+body.dark-mode .upload-progress-card {
+    background: #1e293b;
+    border: 1px solid #475569;
+}
+body.dark-mode .upload-progress-card .card-body {
+    color: #e2e8f0;
+}
+body.dark-mode .upload-progress-card h5 {
+    color: #e2e8f0;
+}
+body.dark-mode .upload-progress-card p {
+    color: #94a3b8;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="upload-progress-overlay" id="uploadProgressOverlay" aria-live="polite" aria-label="Upload in progress">
+    <div class="card upload-progress-card">
+        <div class="card-body">
+            <div class="spinner-border text-primary mb-3" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h5 class="mb-2">Uploading products</h5>
+            <p class="mb-0 text-muted">Please wait while the file is processed. Do not close this page.</p>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2><i class="fas fa-file-upload"></i> Bulk Product Upload</h2>
+        <p class="text-muted mb-0">Upload new products using CSV or XLSX and keep your catalog in sync.</p>
+    </div>
+    <a href="{% url 'products:product_list' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Products
+    </a>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <p class="mb-3">Download the sample CSV template below, fill the required columns, then upload the completed file. The upload will create new products or update existing SKUs.</p>
+        <a href="{% url 'products:product_bulk_upload_template' %}" class="btn btn-outline-primary mb-4">
+            <i class="fas fa-download"></i> Download product upload template
+        </a>
+
+        <form id="bulk-upload-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Choose CSV or XLSX file</label>
+                <input type="file" name="product_file" accept=".csv,.xlsx" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-upload"></i> Upload Products
+            </button>
+        </form>
+    </div>
+</div>
+
+{% if created_count or updated_count or upload_errors %}
+<div class="card mb-4">
+    <div class="card-header bg-success text-white">
+        <strong>Bulk upload summary</strong>
+    </div>
+    <div class="card-body">
+        <p class="mb-3">Upload completed. {{ created_count }} products created and {{ updated_count }} products updated.</p>
+        {% if upload_errors %}
+        <div class="alert alert-warning">
+            <strong>{{ upload_errors|length }} warning(s)</strong> were found during upload. Please review them below.
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% if upload_errors %}
+<div class="card mb-4">
+    <div class="card-header bg-warning text-dark">
+        <strong>Upload warnings</strong>
+    </div>
+    <div class="card-body">
+        <p>{{ upload_errors|length }} issue(s) were found during upload:</p>
+        <ul class="mb-0">
+            {% for error in upload_errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}
+
+<div class="card">
+    <div class="card-header bg-secondary text-white">
+        <h5 class="mb-0">Expected template columns</h5>
+    </div>
+    <div class="card-body">
+        <p class="mb-3">Your file should contain these columns in the header row:</p>
+        <ul class="mb-0">
+            <li><strong>name</strong> - Product name (required)</li>
+            <li><strong>sku</strong> - Unique product code (required)</li>
+            <li><strong>barcode</strong> - Barcode or UPC</li>
+            <li><strong>category</strong> - Category name</li>
+            <li><strong>supplier</strong> - Supplier name</li>
+            <li><strong>description</strong> - Product description</li>
+            <li><strong>cost_price</strong> - Cost price</li>
+            <li><strong>selling_price</strong> - Selling price</li>
+            <li><strong>stock_quantity</strong> - Quantity in stock</li>
+            <li><strong>low_stock_threshold</strong> - Low stock warning level</li>
+            <li><strong>is_active</strong> - True/False or Yes/No</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('bulk-upload-form');
+        const overlay = document.getElementById('uploadProgressOverlay');
+        if (form && overlay) {
+            form.addEventListener('submit', function () {
+                overlay.classList.add('active');
+            });
+        }
+    });
+</script>
+{% endblock %}

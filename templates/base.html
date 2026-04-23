@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Point of Sale and Shop Management System">
+    <meta name="theme-color" content="#4361ee">
+    <!-- Apple iOS App Support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EXTREME TECH">
+    <!-- Icons & Favicon -->
+    <link rel="icon" type="image/png" href="/static/Extreme Tech Log.png">
+    <link rel="shortcut icon" href="/static/Extreme Tech Log.png">
+    <!-- iOS App Icons -->
+    <link rel="apple-touch-icon" href="/static/ios/180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/ios/152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/static/ios/167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/ios/180.png">
+    <!-- Android App Icons -->
+    <link rel="icon" type="image/png" sizes="48x48" href="/static/android/launchericon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/android/launchericon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/android/launchericon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/static/android/launchericon-512x512.png">
+    <!-- Windows App Icon -->
+    <meta name="msapplication-TileImage" content="/static/windows/Square150x150Logo.scale-100.png">
+    <meta name="msapplication-TileColor" content="#4361ee">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/static/manifest.json">
+    <title>{% block title %}EXTREME TECH{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        :root { 
+            --primary: #4361ee; 
+            --secondary: #3f37c9; 
+            --accent: #4cc9f0; 
+            --success: #4caf50;
+            --light: #f8f9fa; 
+            --dark: #212529; 
+            --sidebar-bg: #ffffff;
+            --glass: rgba(255, 255, 255, 0.8);
+        }
+
+        body { 
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            background: #f0f2f5; 
+            color: var(--dark);
+        }
+
+        /* Glassmorphism Header */
+        .header-bar {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-bar h5 { 
+            font-weight: 700; 
+            color: var(--primary); 
+            letter-spacing: -0.5px;
+        }
+
+        /* Header Right Section */
+        .header-bar .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-bar .user-info {
+            text-align: right;
+            min-width: 120px;
+        }
+
+        .header-bar .user-info .username {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        .header-bar .user-info .role {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 576px) {
+            .header-bar {
+                padding: 10px 15px;
+            }
+            
+            .header-bar .header-right {
+                gap: 8px;
+            }
+            
+            .header-bar .user-info {
+                min-width: auto;
+                font-size: 12px;
+            }
+            
+            .header-bar .user-info .username {
+                font-size: 13px;
+            }
+            
+            .header-bar .user-info .role {
+                font-size: 9px;
+            }
+        }
+
+        body.dark-mode {
+            background: #0b1120;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .header-bar {
+            background: rgba(15, 23, 42, 0.92);
+            border-bottom-color: rgba(148, 163, 184, 0.18);
+        }
+
+        body.dark-mode .sidebar {
+            background: #111827;
+            border-right-color: rgba(148, 163, 184, 0.18);
+        }
+
+        body.dark-mode .sidebar nav a,
+        body.dark-mode .sidebar .nav-header,
+        body.dark-mode .sidebar .nav-section .dropdown a {
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .sidebar nav a:hover,
+        body.dark-mode .sidebar .nav-header:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+        }
+
+        body.dark-mode .sidebar .nav-section .dropdown {
+            background: #1f2937;
+        }
+
+        body.dark-mode .user-pill {
+            background: #1f2937;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .card {
+            background: #111827;
+            border-color: rgba(148, 163, 184, 0.18);
+        }
+
+        body.dark-mode .col-md-10 {
+            background-color: #111827;
+        }
+
+        body.dark-mode .alert {
+            background: #1f2937;
+            color: #e2e8f0;
+            border-color: rgba(148, 163, 184, 0.18);
+        }
+
+        body.dark-mode .btn-primary {
+            background: #2563eb;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+        }
+
+        body.dark-mode .btn-outline-danger {
+            color: #fecaca;
+            border-color: rgba(248, 113, 113, 0.5);
+        }
+
+        /* Dark Mode Background Overrides */
+        body.dark-mode .bg-light,
+        body.dark-mode .bg-white,
+        body.dark-mode [class*="bg-light"],
+        body.dark-mode [class*="bg-white"] {
+            background-color: #1f2937 !important;
+        }
+        /* Dark Mode Text Overrides */
+        body.dark-mode .text-dark,
+        body.dark-mode [class*="text-dark"] {
+            color: #e2e8f0 !important;
+        }
+        /* Dark Mode Text Muted */
+        body.dark-mode .text-muted {
+            color: #9ca3af !important;
+        }
+        /* Dark Mode Cards */
+        body.dark-mode .card-body {
+            background-color: #111827;
+            color: #e2e8f0;
+        }
+        /* Dark Mode Tables */
+        body.dark-mode .table {
+            --bs-table-bg: transparent;
+            --bs-table-color: #e2e8f0;
+            border-color: #374151;
+        }
+        body.dark-mode .table thead th,
+        body.dark-mode .table thead td {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #e2e8f0;
+        }
+        body.dark-mode .table tbody tr {
+            border-color: #374151;
+        }
+        body.dark-mode .table-hover tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        body.dark-mode .table td,
+        body.dark-mode .table th {
+            border-color: #374151;
+        }
+        body.dark-mode .table-active {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+        }
+        /* Dark Mode Forms */
+        body.dark-mode .form-control,
+        body.dark-mode .form-control:focus,
+        body.dark-mode .form-control:disabled {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #e2e8f0;
+        }
+        body.dark-mode .form-control::placeholder {
+            color: #6b7280;
+        }
+        body.dark-mode .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+        }
+        /* Dark Mode Input Group */
+        body.dark-mode .input-group-text {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #9ca3af;
+        }
+        /* Dark Mode Select */
+        body.dark-mode .form-select,
+        body.dark-mode .form-select:focus {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #e2e8f0;
+        }
+        /* Dark Mode Modal */
+        body.dark-mode .modal-backdrop {
+            background-color: #000;
+        }
+        body.dark-mode .modal-content {
+            background-color: #111827;
+            border-color: #374151;
+        }
+        body.dark-mode .modal-header,
+        body.dark-mode .modal-footer {
+            border-color: #374151;
+        }
+        body.dark-mode .modal-body {
+            color: #e2e8f0;
+        }
+        body.dark-mode .btn-close {
+            filter: invert(1);
+            opacity: 0.5;
+        }
+        body.dark-mode .btn-close:hover {
+            opacity: 1;
+        }
+        /* Dark Mode Badges */
+        body.dark-mode .badge.bg-light {
+            background-color: #374151 !important;
+            color: #e2e8f0 !important;
+        }
+        body.dark-mode .badge.bg-white {
+            background-color: #1f2937 !important;
+            color: #e2e8f0 !important;
+        }
+        /* Dark Mode Buttons */
+        body.dark-mode .btn-outline-secondary {
+            color: #9ca3af;
+            border-color: #374151;
+        }
+        body.dark-mode .btn-outline-secondary:hover {
+            background-color: #374151;
+            color: #e2e8f0;
+        }
+        /* Dark Mode Dropdown */
+        body.dark-mode .dropdown-menu {
+            background-color: #1f2937;
+            border-color: #374151;
+        }
+        body.dark-mode .dropdown-item {
+            color: #e2e8f0;
+        }
+        body.dark-mode .dropdown-item:hover {
+            background-color: #374151;
+            color: #e2e8f0;
+        }
+        /* Dark Mode Pagination */
+        body.dark-mode .page-link {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #e2e8f0;
+        }
+        body.dark-mode .page-link:hover {
+            background-color: #374151;
+            border-color: #374151;
+            color: #e2e8f0;
+        }
+        body.dark-mode .page-item.disabled .page-link {
+            background-color: #111827;
+            border-color: #374151;
+            color: #6b7280;
+        }
+        /* Dark Mode Alert */
+        body.dark-mode .alert-success { background-color: #064e3b; color: #6ee7b7; border-color: #065f46; }
+        body.dark-mode .alert-danger { background-color: #7f1d1d; color: #fecaca; border-color: #991b1b; }
+        body.dark-mode .alert-warning { background-color: #78350f; color: #fde68a; border-color: #92400e; }
+        body.dark-mode .alert-info { background-color: #164e63; color: #7dd3fc; border-color: #155e75; }
+        /* Dark Mode List Groups */
+        body.dark-mode .list-group-item {
+            background-color: #111827;
+            border-color: #374151;
+            color: #e2e8f0;
+        }
+        /* Dark Mode HR */
+        body.dark-mode hr {
+            border-color: #374151;
+        }
+        /* Dark Mode Nav Tabs */
+        body.dark-mode .nav-tabs .nav-link {
+            color: #9ca3af;
+        }
+        body.dark-mode .nav-tabs .nav-link.active {
+            background-color: #111827;
+            color: #e2e8f0;
+            border-color: #374151 #374151 #111827;
+        }
+        /* Dark Mode Search Box Placeholder */
+        body.dark-mode input::placeholder {
+            color: #6b7280;
+        }
+        /* Dark Mode Border */
+        body.dark-mode .border {
+            border-color: #374151 !important;
+        }
+
+        /* Dark Mode POS and custom widgets */
+        body.dark-mode .product-card,
+        body.dark-mode .cart-panel,
+        body.dark-mode .card.cart-panel,
+        body.dark-mode .card.border-0.shadow-sm,
+        body.dark-mode .card.border-0.shadow-lg {
+            background-color: #111827;
+            border-color: #374151;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .product-card:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.15);
+        }
+
+        body.dark-mode .price-tag {
+            background-color: #1f2937;
+            color: #7dd3fc;
+        }
+
+        body.dark-mode .table-pos thead th {
+            background-color: #111827;
+            color: #e2e8f0;
+            border-color: #374151;
+        }
+
+        body.dark-mode .table-pos td,
+        body.dark-mode .table-pos th {
+            border-color: #374151;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .qty-input,
+        body.dark-mode .input-group-custom,
+        body.dark-mode .input-group-custom input {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .pos-clock-box {
+            background-color: #111827;
+            border-color: #374151;
+        }
+
+        body.dark-mode .total-display {
+            color: #38bdf8;
+        }
+
+        body.dark-mode .btn-complete {
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.25);
+        }
+
+        body.dark-mode .btn-outline-primary,
+        body.dark-mode .btn-outline-secondary,
+        body.dark-mode .btn-outline-success,
+        body.dark-mode .btn-outline-info {
+            border-color: #374151;
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .btn-outline-primary:hover,
+        body.dark-mode .btn-outline-secondary:hover,
+        body.dark-mode .btn-outline-success:hover,
+        body.dark-mode .btn-outline-info:hover {
+            background-color: #1f2937;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .btn-warning {
+            background-color: #f59e0b;
+            border-color: #d97706;
+            color: #111827;
+        }
+
+        .theme-toggle-btn {
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .theme-toggle-btn::after {
+            content: '';
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #facc15;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7);
+            transition: background 0.2s ease;
+        }
+
+        .theme-toggle-btn[data-theme="dark"]::after {
+            background: #38bdf8;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        body.dark-mode .user-pill .text-muted,
+        body.dark-mode .header-bar h5 {
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .header-bar .user-info .username {
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .header-bar .user-info .role {
+            color: #60a5fa;
+        }
+
+        body.dark-mode .sidebar .nav-header .arrow {
+            color: #93c5fd;
+        }
+
+        /* Sidebar Container */
+        .sidebar { 
+            background: var(--sidebar-bg); 
+            border-right: 1px solid #e2e8f0;
+            min-height: 100vh;
+        }
+
+        /* Base Nav Link Styling */
+        .sidebar nav a { 
+            color: var(--text-main); 
+            font-weight: 500;
+            font-size: 0.85rem;
+            padding: 10px 15px; 
+            margin: 2px 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        /* Section Headers (The clickable labels) */
+        .sidebar .nav-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 10px 15px;
+            margin: 2px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        /* Hover States */
+        .sidebar nav a:hover, 
+        .sidebar .nav-header:hover { 
+            background: #f1f5f9; 
+            color: var(--primary);
+        }
+
+        /* Active State */
+        .sidebar nav a.active { 
+            background: var(--primary) !important; 
+            color: white !important;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+
+        /* Dropdown Container */
+        .sidebar .nav-section .dropdown { 
+            display: none; 
+            background: #f8fafc; 
+            margin: 0 12px 5px 12px;
+            border-radius: 8px;
+        }
+
+        /* Open States */
+        .sidebar .nav-section.open .dropdown { display: block; }
+        .sidebar .nav-section.open .nav-header { color: var(--primary); background: #f1f5f9; }
+
+        /* Sub-links inside Dropdown */
+        .sidebar .nav-section .dropdown a { 
+            padding: 8px 15px 8px 40px; 
+            margin: 0;
+            border-radius: 0;
+            font-size: 0.8rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .sidebar .nav-section .dropdown a:last-child { border-bottom: none; border-radius: 0 0 8px 8px; }
+        .sidebar .nav-section .dropdown a:first-child { border-radius: 8px 8px 0 0; }
+
+        /* Arrow Animation */
+        .sidebar .nav-header .arrow { 
+            transition: transform 0.3s ease; 
+            font-size: 0.7rem; 
+            color: var(--text-muted);
+        }
+        .sidebar .nav-header.open .arrow { transform: rotate(90deg); color: var(--primary); }
+        /* User Info & Clock */
+        .user-pill {
+            background: #f1f5f9;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #liveClock {
+            color: var(--primary);
+            font-family: 'Courier New', monospace; /* Monospaced keeps it from jumping */
+        }
+
+        /* Cards & Components */
+        .card { 
+            border: 1px solid rgba(0,0,0,0.05); 
+            border-radius: 16px; 
+            transition: transform 0.2s;
+        }
+
+        .card:hover { transform: translateY(-3px); }
+
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(67, 97, 238, 0.2);
+        }
+        .brand-header {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .brand-header .page-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+        .brand-header h5 {
+            margin: 0;
+            font-size: 1.05rem;
+        }
+        .brand-header small {
+            display: block;
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1rem 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 0.5rem;
+        }
+        .sidebar-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.12);
+        }
+        .sidebar-brand span {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+         .page-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            font-size: 0.88rem;
+            color: #6b7280;
+        }
+        body.dark-mode .page-footer {
+            border-top-color: rgba(255,255,255,0.1);
+            color: #9ca3af;
+        }
+
+        .page-footer a {
+            color: inherit;
+            text-decoration: none;
+        }
+        /* Refined Content Area */
+        .col-md-10 {
+            background-color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+    /* Mobile Optimizations */
+    @media (max-width: 768px) {
+        .header-bar {
+            padding: 10px 15px;
+        }
+        
+        .sidebar {
+            position: fixed;
+            left: -100%;
+            top: 0;
+            width: 280px;
+            z-index: 1050;
+            transition: left 0.3s ease;
+        }
+        
+        .sidebar.open {
+            left: 0;
+        }
+        
+        .col-md-10 {
+            margin-left: 0;
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        .user-pill {
+            display: none;
+        }
+        
+        .theme-toggle-btn {
+            margin-left: auto;
+        }
+        
+        .card {
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            min-height: 44px;
+            padding: 12px 16px;
+        }
+        
+        .form-control {
+            min-height: 44px;
+            font-size: 16px; /* Prevents zoom on iOS, good for Android too */
+        }
+        
+        .table-responsive {
+            font-size: 0.9rem;
+        }
+    }
+
+        .main-content {
+            flex: 1; /* This makes content grow and push footer down */
+        }
+
+        .alert {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-12">
+                <div class="header-bar d-flex justify-content-between align-items-center">
+                    <button id="sidebarToggle" class="btn btn-sm btn-outline-secondary border-0 d-md-none me-2" title="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
+                    <div class="d-flex align-items-center gap-3 ms-auto header-right">
+                        <!-- Date and Time -->
+                        <div class="user-pill d-none d-lg-flex">
+                            <span id="liveDate" class="text-muted small"></span>
+                            <span class="vr mx-2"></span>
+                            <span id="liveClock" class="fw-bold small"></span>
+                        </div>
+
+                        <!-- User Info -->
+                        <div class="user-info text-end">
+                            <div class="username">{{ user.username }}</div>
+                            <div class="role text-primary">
+                                {% if user.is_superuser %}Super Admin{% else %}Staff{% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Dark Mode Toggle -->
+                        <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary border-0 theme-toggle-btn" data-theme="light" title="Toggle dark / light mode">
+                            <i class="fas fa-moon"></i>
+                        </button>
+
+                        <!-- Logout Button -->
+                        <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-danger border-0 d-flex align-items-center gap-1 px-2">
+                            <i class="fas fa-power-off"></i>
+                            <span class="d-none d-md-inline">Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-md-2 sidebar p-0">
+                <button id="sidebarClose" class="btn btn-sm btn-outline-secondary border-0 position-absolute top-0 end-0 m-2 d-md-none" style="z-index: 1051;" title="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+                <nav class="py-2">
+                    <div class="sidebar-brand">
+                        <h5><img src="/static/Extreme Tech Log.png" alt="Extreme Tech Logo">EXTREME TECH</h5>
+                    </div>
+                    {% if user.is_superuser or user.role == 'admin' or user.is_staff %}
+                    <a href="/reports/summary/" class="{% if request.path == '/reports/summary/' %}active{% endif %}">
+                        <i class="fas fa-home me-2"></i> Dashboard
+                    </a>
+                    <div class="nav-section" data-section="accounts">
+                        <span class="nav-header" onclick="toggleNav(this)">
+                            <span><i class="fas fa-wallet me-2"></i> Accounts</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </span>
+                        <div class="dropdown">
+                            <a href="{% url 'sales:sale_list' %}">All Sales</a>
+                            <a href="{% url 'sales:sale_list' %}?status=completed">Completed</a>
+                            <a href="{% url 'sales:sale_list' %}?status=pending">Pending</a>
+                            <a href="{% url 'sales:sale_list' %}?payment=paid">Paid In</a>
+                            <a href="{% url 'sales:sale_list' %}?payment=credit">Credit</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <a href="{% url 'sales:sale_list' %}?date=today" class="{% if '/sales/' in request.path %}active{% endif %}">
+                        <i class="fas fa-calendar-day me-2"></i> Today's Sales
+                    </a>
+                    <a href="{% url 'reports:expense_list' %}" class="{% if '/reports/' in request.path %}active{% endif %}">
+                        <i class="fas fa-hand-holding-usd me-2"></i> Credits
+                    </a>
+                    {% endif %}
+                    
+                    <a href="{% url 'sales:pos' %}" class="{% if '/sales/pos' in request.path %}active{% endif %}">
+                        <i class="fas fa-cash-register me-2"></i> New Sale (POS)
+                    </a>
+                    
+                    {% if user.is_superuser or user.role == 'admin' %}
+                    <div class="nav-section" data-section="users">
+                        <span class="nav-header" onclick="toggleNav(this)">
+                            <span><i class="fas fa-users me-2"></i> Users</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </span>
+                        <div class="dropdown">
+                            <a href="{% url 'users:user_list' %}">Registered</a>
+                            <a href="{% url 'users:user_list' %}?status=archived">Archived</a>
+                        </div>
+                    </div>
+                    <div class="nav-section" data-section="stock">
+                        <span class="nav-header" onclick="toggleNav(this)">
+                            <span><i class="fas fa-boxes me-2"></i> Stock</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </span>
+                        <div class="dropdown">
+                            <a href="{% url 'products:product_list' %}">Stock List</a>
+                            <a href="{% url 'products:stock_history' %}">Transactions</a>
+                        </div>
+                    </div>
+                    <div class="nav-section" data-section="category">
+                        <span class="nav-header" onclick="toggleNav(this)">
+                            <span><i class="fas fa-tags me-2"></i> Category</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </span>
+                        <div class="dropdown">
+                            <a href="{% url 'products:category_list' %}">All Categories</a>
+                            <a href="{% url 'products:category_create' %}">Add Category</a>
+                        </div>
+                    </div>
+                    <div class="nav-section" data-section="supplier">
+                        <span class="nav-header" onclick="toggleNav(this)">
+                            <span><i class="fas fa-truck me-2"></i> Supplier</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </span>
+                        <div class="dropdown">
+                            <a href="{% url 'products:supplier_list' %}">All Suppliers</a>
+                            <a href="{% url 'products:supplier_create' %}">Add Supplier</a>
+                        </div>
+                    </div>
+                    <div class="nav-section" data-section="customers">
+                        <span class="nav-header" onclick="toggleNav(this)">
+                            <span><i class="fas fa-users me-2"></i> Customers</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </span>
+                        <div class="dropdown">
+                            <a href="{% url 'customers:customer_list' %}">All Customers</a>
+                            <a href="{% url 'customers:customer_create' %}">Add Customer</a>
+                        </div>
+                    </div>
+                    <div class="nav-section" data-section="messages">
+                        <span class="nav-header" onclick="toggleNav(this)">
+                            <span><i class="fas fa-envelope me-2"></i> Messages</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </span>
+                        <div class="dropdown">
+                            <a href="{% url 'sales:receipts' %}">Send Receipt</a>
+                        </div>
+                    </div>
+                    <div class="nav-section" data-section="reports">
+                        <span class="nav-header" onclick="toggleNav(this)">
+                            <span><i class="fas fa-chart-line me-2"></i> Reports</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </span>
+                        <div class="dropdown">
+                            <a href="{% url 'reports:expense_list' %}">Credits</a>
+                            <a href="/reports/summary/">Summary</a>
+                        </div>
+                    </div>
+                    <a href="/admin/">
+                        <i class="fas fa-cog me-2"></i> Admin Settings
+                    </a>
+                    {% endif %}
+                </nav>
+            </div>
+            <div class="col-md-10 p-4">
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock %}
+                <footer class="page-footer text-center text-muted mt-4">
+                    <div class="main-content">
+                        <div>EXTREME TECH &copy; {% now "Y" %} | Auto Spares and Smartphone Accessories.</div>
+                        <div>Powered by EXTREME TECH</div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
+        <div class="text-center">
+            <img src="/static/Extreme Tech Log.png" alt="EXTREME TECH Logo" style="width: 80px; height: 80px; margin-bottom: 20px; border-radius: 12px;">
+            <h1 class="mb-4"><i class="fas fa-store me-2"></i> EXTREME TECH</h1>
+            <p class="mb-4">Please log in to access the dashboard.</p>
+            <a href="{% url 'login' %}" class="btn btn-primary"><i class="fas fa-sign-in-alt me-2"></i> Login</a>
+        </div>
+    </div>
+    {% endif %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleNav(element) {
+            element.parentElement.classList.toggle('open');
+            element.classList.toggle('open');
+        }
+        function openSection(name) {
+            const el = document.querySelector('.nav-section[data-section="' + name + '"]');
+            if (el) { el.classList.add('open'); el.querySelector('.nav-header').classList.add('open'); }
+        }
+        // Live clock
+        function updateClock() {
+            const now = new Date();
+            
+            // Format Time: HH:MM:SS
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            
+            // Format Date: e.g., Tuesday, April 14, 2026
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = now.toLocaleDateString('en-US', options);
+
+            // Update the elements safely
+            const clockEl = document.getElementById('liveClock');
+            const dateEl = document.getElementById('liveDate');
+
+            if (clockEl) clockEl.textContent = timeString;
+            if (dateEl) dateEl.textContent = dateString;
+        }
+
+        // Theme toggle support
+        function applyTheme(theme) {
+            const body = document.body;
+            const toggle = document.getElementById('themeToggleBtn');
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                if (toggle) {
+                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    toggle.dataset.theme = 'dark';
+                    toggle.setAttribute('aria-label', 'Switch to light mode');
+                }
+            } else {
+                body.classList.remove('dark-mode');
+                if (toggle) {
+                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    toggle.dataset.theme = 'light';
+                    toggle.setAttribute('aria-label', 'Switch to dark mode');
+                }
+            }
+            localStorage.setItem('ckayTheme', theme);
+        }
+
+        function toggleTheme() {
+            const current = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            applyTheme(current === 'dark' ? 'light' : 'dark');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('ckayTheme') || 'light';
+            applyTheme(savedTheme);
+            const themeToggle = document.getElementById('themeToggleBtn');
+            if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+
+            // Mobile sidebar toggle
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarClose = document.getElementById('sidebarClose');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('open');
+                });
+            }
+            
+            if (sidebarClose) {
+                sidebarClose.addEventListener('click', function() {
+                    sidebar.classList.remove('open');
+                });
+            }
+            
+            // Close sidebar when clicking outside
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth < 768 && sidebar.classList.contains('open')) {
+                    if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
+
+            const path = window.location.pathname;
+            {% if user.is_superuser or user.role == 'admin' %}
+            if (path.includes('/sales/') && !path.includes('/pos')) openSection('accounts');
+            else if (path.includes('/users/')) openSection('users');
+            else if (path.includes('/products/') || path.includes('/stock-')) openSection('stock');
+            else if (path.includes('/category')) openSection('category');
+            else if (path.includes('/supplier')) openSection('supplier');
+            else if (path.includes('/customers/')) openSection('customers');
+            else if (path.includes('/receipt')) openSection('messages');
+            else if (path.includes('/reports/')) openSection('reports');
+            {% endif %}
+        });
+
+        // Initialize and start interval
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+
+    <!-- Service Worker Registration for PWA Support -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/static/service-worker.js', {
+                    scope: '/'
+                }).then(registration => {
+                    console.log('Service Worker registered successfully:', registration);
+                    
+                    // Check for updates periodically
+                    setInterval(() => {
+                        registration.update();
+                    }, 60000); // Check every minute
+                    
+                    // Listen for updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // New service worker is ready
+                                showUpdateNotification();
+                            }
+                        });
+                    });
+                }).catch(error => {
+                    console.warn('Service Worker registration failed:', error);
+                });
+            });
+            
+            // Handle messages from service worker
+            navigator.serviceWorker.addEventListener('message', event => {
+                if (event.data && event.data.type === 'SYNC_COMPLETE') {
+                    console.log('Offline data synced successfully');
+                    showSyncNotification();
+                }
+            });
+        }
+        
+        // Show notification for app update
+        function showUpdateNotification() {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-info alert-dismissible fade show position-fixed';
+            alertDiv.style.cssText = 'bottom: 20px; right: 20px; z-index: 9999; max-width: 400px;';
+            alertDiv.innerHTML = `
+                <strong>Update Available!</strong> A new version of EXTREME TECH is ready.
+                <button type="button" class="btn btn-sm btn-primary ms-2" onclick="location.reload()">
+                    Update Now
+                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+        }
+        
+        // Show notification for data sync
+        function showSyncNotification() {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-success alert-dismissible fade show position-fixed';
+            alertDiv.style.cssText = 'bottom: 20px; right: 20px; z-index: 9999; max-width: 400px;';
+            alertDiv.innerHTML = `
+                <i class="fas fa-check-circle me-2"></i><strong>Synced!</strong> Your offline data has been synchronized.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+        
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            showInstallPrompt();
+        });
+
+        function showInstallPrompt() {
+            if (deferredPrompt) {
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-primary alert-dismissible fade show position-fixed';
+                alertDiv.style.cssText = 'bottom: 20px; left: 20px; z-index: 9999; max-width: 400px;';
+                alertDiv.innerHTML = `
+                    <i class="fas fa-mobile-alt me-2"></i><strong>Install EXTREME TECH</strong> Add to your home screen for the best experience!
+                    <button type="button" class="btn btn-sm btn-primary ms-2" onclick="installPWA()">
+                        Install
+                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+                document.body.appendChild(alertDiv);
+            }
+        }
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

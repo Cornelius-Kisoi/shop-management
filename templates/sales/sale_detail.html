@@ -1,0 +1,82 @@
+﻿{% extends 'base.html' %}
+{% load currency_extra %}
+
+{% block title %}Sale {{ sale.invoice_number }}{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col-12 d-flex flex-wrap align-items-center justify-content-between gap-2">
+        <div>
+            <h2><i class="fas fa-receipt"></i> Invoice: {{ sale.invoice_number }}</h2>
+            <p class="text-muted mb-0">{{ sale.customer.name|default:"Walk-in Customer" }}</p>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+            <a href="{% url 'sales:sale_list' %}" class="btn btn-secondary">Back to Sales</a>
+            <a href="{% url 'sales:receipt' sale.id %}?download=1" class="btn btn-outline-primary">Download Receipt</a>
+            {% if credit_receipt_url %}
+            <a href="{{ credit_receipt_url }}?download=1" class="btn btn-outline-secondary">Download Credit Receipt</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <p><strong>Customer:</strong> {{ sale.customer.name|default:"Walk-in Customer" }}</p>
+                <p><strong>Date:</strong> {{ sale.created_at|date:"F d, Y H:i" }}</p>
+            </div>
+            <div class="col-md-6 text-end">
+                <p><strong>Created By:</strong> {{ sale.created_by.username }}</p>
+                <p><strong>Status:</strong> <span class="badge bg-success">{{ sale.get_status_display }}</span></p>
+                {% if credit_receipt_url %}
+                <a href="{{ credit_receipt_url }}?download=1" class="btn btn-sm btn-outline-secondary mt-2">
+                    <i class="fas fa-file-invoice-dollar me-1"></i> Credit Receipt
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in sale.items.all %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.unit_price|kes }}</td>
+                    <td>{{ item.total_price|kes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <table class="table table-sm">
+                    <tr><td>Subtotal:</td><td>{{ sale.subtotal|kes }}</td></tr>
+                    {% if sale.discount_amount > 0 %}
+                    <tr><td>Discount:</td><td>-{{ sale.discount_amount|kes }}</td></tr>
+                    {% endif %}
+                    <tr><td><strong>Total:</strong></td><td><strong>{{ sale.total_amount|kes }}</strong></td></tr>
+                    <tr><td>Amount Paid:</td><td>{{ sale.amount_paid|kes }}</td></tr>
+                    <tr><td>Change:</td><td>{{ sale.change_given|kes }}</td></tr>
+                </table>
+            </div>
+        </div>
+
+        {% if sale.notes %}
+        <p><strong>Notes:</strong> {{ sale.notes }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

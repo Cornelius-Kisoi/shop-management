@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}New Sale{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col-12">
+        <h2><i class="fas fa-shopping-cart"></i> New Sale</h2>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" id="saleForm">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Customer (Optional)</label>
+                    <select name="customer" class="form-select">
+                        <option value="">-- Walk-in Customer --</option>
+                        {% for c in customers %}
+                        <option value="{{ c.id }}">{{ c.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Notes</label>
+                    <input type="text" name="notes" class="form-control" placeholder="Optional notes">
+                </div>
+            </div>
+            
+            <h5 class="mt-4">Products</h5>
+            <table class="table table-bordered" id="productsTable">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Available</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="productRows">
+                    <tr>
+                        <td>
+                            <select name="product_id" class="form-select product-select" onchange="updatePrice(this)">
+                                <option value="">Select Product</option>
+                                {% for p in products %}
+                                <option value="{{ p.id }}" data-price="{{ p.selling_price }}" data-stock="{{ p.stock_quantity }}">{{ p.name }} ({{ p.sku }})</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td class="price">$0.00</td>
+                        <td class="stock">-</td>
+                        <td><input type="number" name="quantity" class="form-control" value="1" min="1" onchange="updateRowTotal(this)"></td>
+                        <td class="row-total">$0.00</td>
+                        <td><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="addProductRow()">+ Add Product</button>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <label class="form-label">Amount Paid</label>
+                    <input type="number" name="amount_paid" class="form-control" step="0.01" value="0" required>
+                </div>
+                <div class="col-md-6 text-end">
+                    <h4>Total: $<span id="grandTotal">0.00</span></h4>
+                    <button type="submit" class="btn btn-success btn-lg">Complete Sale</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function addProductRow() {
+    const tbody = document.getElementById('productRows');
+    const row = tbody.insertRow();
+    row.innerHTML = `
+        <td>
+            <select name="product_id" class="form-select product-select" onchange="updatePrice(this)">
+                <option value="">Select Product</option>
+                {% for p in products %}
+                <option value="{{ p.id }}" data-price="{{ p.selling_price }}" data-stock="{{ p.stock_quantity }}">{{ p.name }} ({{ p.sku }})</option>
+                {% endfor %}
+            </select>
+        </td>
+        <td class="price">$0.00</td>
+        <td class="stock">-</td>
+        <td><input type="number" name="quantity" class="form-control" value="1" min="1" onchange="updateRowTotal(this)"></td>
+        <td class="row-total">$0.00</td>
+        <td><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button></td>
+    `;
+}
+
+function removeRow(btn) {
+    const tbody = document.getElementById('productRows');
+    if (tbody.rows.length > 1) btn.closest('tr').remove();
+    calculateTotal();
+}
+
+function updatePrice(select) {
+    const row = select.closest('tr');
+    const price = select.options[select.selectedIndex]?.dataset.price || 0;
+    const stock = select.options[select.selectedIndex]?.dataset.stock || 0;
+    row.querySelector('.price').textContent = '$' + parseFloat(price).toFixed(2);
+    row.querySelector('.stock').textContent = stock;
+    row.querySelector('input[name="quantity"]').max = stock;
+    updateRowTotal(select);
+}
+
+function updateRowTotal(input) {
+    const row = input.closest('tr');
+    const select = row.querySelector('select');
+    const price = select.options[select.selectedIndex]?.dataset.price || 0;
+    const qty = parseInt(input.value) || 0;
+    row.querySelector('.row-total').textContent = '$' + (price * qty).toFixed(2);
+    calculateTotal();
+}
+
+function calculateTotal() {
+    let total = 0;
+    document.querySelectorAll('.row-total').forEach(el => {
+        total += parseFloat(el.textContent.replace('$', '')) || 0;
+    });
+    document.getElementById('grandTotal').textContent = total.toFixed(2);
+}
+</script>
+{% endblock %}

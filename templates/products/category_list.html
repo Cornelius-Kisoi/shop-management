@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Categories - EXTREME TECH{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-tags"></i> Categories</h2>
+    <a href="{% url 'products:category_create' %}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add Category
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h6 class="mb-0"><i class="fas fa-filter"></i> Filters</h6>
+            </div>
+            <div class="card-body">
+                <p class="text-muted small">No filters available</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                        <tr>
+                            <td>{{ category.name }}</td>
+                            <td>{{ category.description|default:"-" }}</td>
+                            <td>
+                                <a href="{% url 'products:category_delete' category.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete category?')">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="3" class="text-center text-muted">No categories found</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% if categories.has_other_pages %}
+                <nav aria-label="Categories pagination">
+                    <ul class="pagination justify-content-center flex-wrap">
+                        {% if categories.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ categories.previous_page_number }}">Previous</a>
+                        </li>
+                        {% endif %}
+                        {% for num in categories.paginator.page_range %}
+                        <li class="page-item {% if num == categories.number %}active{% endif %}" {% if num == categories.number %}aria-current="page"{% endif %}>
+                            {% if num == categories.number %}
+                            <span class="page-link">{{ num }}</span>
+                            {% else %}
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                        {% if categories.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ categories.next_page_number }}">Next</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

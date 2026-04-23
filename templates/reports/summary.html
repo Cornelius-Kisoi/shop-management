@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load currency_extra %}
+
+{% block title %}Financial Summary{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col-12">
+        <h2><i class="fas fa-chart-pie"></i> Financial Summary</h2>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-12">
+        <div class="btn-group">
+            <a href="?period=day" class="btn btn-sm btn-outline-primary {% if period == 'day' %}active{% endif %}">Today</a>
+            <a href="?period=week" class="btn btn-sm btn-outline-primary {% if period == 'week' %}active{% endif %}">This Week</a>
+            <a href="?period=month" class="btn btn-sm btn-outline-primary {% if period == 'month' %}active{% endif %}">This Month</a>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="text-muted mb-2">Total Revenue</h5>
+                <h3 class="text-success">{{ total_revenue|kes }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="text-muted mb-2">Total Sales</h5>
+                <h3 class="text-primary">{{ total_sales_count }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="text-muted mb-2">Total Credits</h5>
+                <h3 class="text-secondary">{{ total_credits|kes }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="text-muted mb-2">Outstanding Balance</h5>
+                <h3 class="text-danger">{{ outstanding_balance|kes }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="text-muted mb-2">Total Stock</h5>
+                <h3 class="text-info">{{ total_stock_value }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="text-muted mb-2">Low Stock Items</h5>
+                <h3 class="text-warning">{{ low_stock_count }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="text-muted mb-2">Net Profit</h5>
+                <h3 class="text-primary">{{ net_profit|default:0|kes }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance - EXTREME TECH</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        .maintenance-container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .maintenance-card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .maintenance-card .card-body {
+            padding: 40px 30px;
+        }
+
+        .maintenance-icon {
+            font-size: 4rem;
+            color: #f59e0b;
+            margin-bottom: 20px;
+        }
+
+        .maintenance-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+
+        .maintenance-message {
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .eta {
+            background: #f1f5f9;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .eta strong {
+            color: #0f172a;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .contact-info a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="maintenance-container">
+        <div class="card maintenance-card">
+            <div class="card-body">
+                <div class="maintenance-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h1 class="maintenance-title">Under Maintenance</h1>
+                <p class="maintenance-message">
+                    We're currently performing scheduled maintenance to improve your experience.
+                    The system will be back online shortly.
+                </p>
+
+                <div class="eta">
+                    <strong>Expected Return:</strong> Within 30 minutes
+                </div>
+
+                <div class="contact-info">
+                    <p>For urgent matters, contact support:</p>
+                    <p>
+                        <i class="fas fa-phone me-1"></i>
+                        <a href="tel:+254723276482">+254 723 276 482</a><br>
+                        <i class="fas fa-envelope me-1"></i>
+                        <a href="mailto:support@extremetech.com">support@extremetech.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Backup Dockerfile
+FROM postgres:15
+
+# Install cron and other utilities
+RUN apt-get update && apt-get install -y \
+    cron \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create backup script
+RUN mkdir -p /backups
+COPY backup.sh /backup.sh
+RUN chmod +x /backup.sh
+
+# Add cron job
+RUN echo "0 2 * * * /backup.sh" > /etc/cron.d/backup-cron
+RUN chmod 0644 /etc/cron.d/backup-cron
+RUN crontab /etc/cron.d/backup-cron
+
+# Create log file
+RUN touch /var/log/cron.log
+
+CMD ["cron", "-f"]
