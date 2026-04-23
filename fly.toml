@@ -1,0 +1,30 @@
+app = "your-fly-app-name"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  DJANGO_SETTINGS_MODULE = "shopmanagement.settings"
+
+[deploy]
+  release_command = "python manage.py migrate"
+
+[[services]]
+  internal_port = 8000
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 80
+
+  [[services.ports]]
+    port = 443
+
+  [services.concurrency]
+    type = "connections"
+    soft_limit = 25
+    hard_limit = 50
+
+  [services.tcp_checks]
+    interval = "30s"
+    timeout = "10s"
+    restart_limit = 3
