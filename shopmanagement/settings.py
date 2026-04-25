@@ -28,7 +28,7 @@ if not SECRET_KEY:
     else:
         raise ValueError('SECRET_KEY environment variable is required in production')
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1, shop-management.fly.dev').split(',')
 if not DEBUG and (not ALLOWED_HOSTS or ALLOWED_HOSTS == ['']):
     raise ValueError('ALLOWED_HOSTS environment variable is required in production')
 

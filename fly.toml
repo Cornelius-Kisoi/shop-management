@@ -14,17 +14,22 @@ app = "shop-management"
   protocol = "tcp"
 
   [[services.ports]]
+    handlers = ["http"]
     port = 80
+    force_https = true
 
   [[services.ports]]
+    handlers = ["tls", "http"]
     port = 443
 
   [services.concurrency]
     type = "connections"
-    soft_limit = 25
     hard_limit = 50
+    soft_limit = 25
 
-  [services.tcp_checks]
+  [[services.http_checks]]
     interval = "30s"
     timeout = "10s"
+    method = "get"
+    path = "/health/"  # Recommended: create a simple view that returns 200 OK
     restart_limit = 3
