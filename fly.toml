@@ -1,4 +1,4 @@
-app = "your-fly-app-name"
+app = "shop-management"
 
 [build]
   dockerfile = "Dockerfile"
