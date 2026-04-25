@@ -143,3 +143,5 @@ backups/
 staticfiles/
 *.sqlite3
 data_dump.json
+DATABASE_URL=postgres://Ckay:Mambo_1995@localhost:5432/shopmanagement_prod
+DEBUG=True
