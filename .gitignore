@@ -143,5 +143,5 @@ backups/
 staticfiles/
 *.sqlite3
 data_dump.json
-DATABASE_URL=postgres://postgres:Mambo_1995@localhost:5432/shopmanagement_prod
+DATABASE_URL=postgres://postgres:bEKpAKbR3RqOvQd@shopmanagementprod.flycast:5432
 DEBUG=True
